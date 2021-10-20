@@ -1,4 +1,4 @@
-package ScreenRenderer.Shapes;
+package Shapes;
 
 /**
  * 2D point in screen coordinates

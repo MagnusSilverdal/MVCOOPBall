@@ -1,4 +1,4 @@
-package ScreenRenderer.Shapes;
+package Shapes;
 
 /**
  * This is a class

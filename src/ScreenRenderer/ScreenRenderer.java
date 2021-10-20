@@ -1,11 +1,12 @@
 package ScreenRenderer;
-import ScreenRenderer.Shapes.Shape;
+import Shapes.Circle;
+import Shapes.Shape;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.util.ArrayList;
 
 /**
  * This is a class
@@ -56,7 +57,14 @@ public class ScreenRenderer extends Canvas {
         return screen;
     }
 
-    public void draw(Shape[] shapes) {
-
+    public void draw(ArrayList<Shape> shapes) {
+        for (Shape s : shapes) {
+            System.out.println(s.getClass().getName());
+            //screen.fill((s.getClass().getName()) s, 0xFFFFFF);
+            switch (s.getClass().getName()) {
+                case "Shapes.Circle" :
+                    screen.fill((Circle)s, 0xFFFFFF);
+            }
+        }
     }
 }

@@ -1,5 +1,9 @@
 package SimulationModel;
 
+import Shapes.Circle;
+import Shapes.Point;
+import Shapes.Shape;
+
 /**
  * This is a class
  * Created 2021-10-18
@@ -14,6 +18,7 @@ public class Ball {
     private int color;
     private double vx = 0;
     private double vy = 0;
+    private Circle circle;
 
     public Ball(double x, double y, double radious, double mass, int color) {
         this.x = x;
@@ -21,7 +26,11 @@ public class Ball {
         this.radious = radious;
         this.mass = mass;
         this.color = color;
+        circle = new Circle(new Point((int)x, (int)y), (int)radious);
     }
 
+    public Shape getShape() {
+        return circle;
+    }
 
 }

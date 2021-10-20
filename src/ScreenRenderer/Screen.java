@@ -1,6 +1,6 @@
 package ScreenRenderer;
 
-import ScreenRenderer.Shapes.*;
+import Shapes.*;
 
 /**
  * This is a class
@@ -19,51 +19,51 @@ public class Screen {
         this.pixels = pixels;
     }
 
-    public void drawPixel(int x, int y , int color) {
+    public void draw(int x, int y , int color) {
         pixels[y*width+x] = color;
     }
 
-    public void drawPixel(Point p, int color) {
-        drawPixel(p.getX(), p.getY(), color);
+    public void draw(Point p, int color) {
+        draw(p.getX(), p.getY(), color);
     }
 
-    public void drawLine(Line l, int color) {
-        drawLine(l.getStart(),l.getEnd(),color);
+    public void draw(Line l, int color) {
+        draw(l.getStart(),l.getEnd(),color);
     }
 
-    public void drawLine(Point start, Point end, int color) {
+    public void draw(Point start, Point end, int color) {
         int[] pixels = getPointsFromLine(start,end);
         for (int i = 0 ; i < pixels.length ; i++) {
-            drawPixel(pixels[i++],pixels[i],color);
+            draw(pixels[i++],pixels[i],color);
         }
     }
 
-    public void drawRectangle(Rectangle r, int color) {
+    public void draw(Rectangle r, int color) {
         Line l1 =  new Line(r.getStart(),new Point(r.getEnd().getX(), r.getStart().getY()));
         Line l2 =  new Line(new Point(r.getEnd().getX(), r.getStart().getY()),r.getEnd());
         Line l3 =  new Line(r.getEnd(),new Point(r.getStart().getX(), r.getEnd().getY()));
         Line l4 =  new Line(new Point(r.getStart().getX(), r.getEnd().getY()),r.getStart());
-        drawLine(l1, color);
-        drawLine(l2, color);
-        drawLine(l3, color);
-        drawLine(l4, color);
+        draw(l1, color);
+        draw(l2, color);
+        draw(l3, color);
+        draw(l4, color);
     }
 
-    public void fillRectangle(Rectangle r, int color) {
+    public void fill(Rectangle r, int color) {
         for (int i = r.getStart().getY() ; i < r.getEnd().getY() ; i++) {
             for (int j = r.getStart().getX() ; j < r.getEnd().getX() ; j++) {
-                drawPixel(j,i,color);
+                draw(j,i,color);
             }
         }
     }
 
-    public void fillCircle(Circle c, int color) {
+    public void fill(Circle c, int color) {
         Point p1 = new Point(c.getCenter().getX()-c.getRadius(), c.getCenter().getY()-c.getRadius());
         Point p2 = new Point(c.getCenter().getX()+c.getRadius(), c.getCenter().getY()+c.getRadius());
         for (int i = p1.getY() ; i < p2.getY() ; i++) {
             for (int j = p1.getX() ; j < p2.getX() ; j++) {
                 if ((j-c.getCenter().getX())*(j-c.getCenter().getX()) + (i-c.getCenter().getY())*(i-c.getCenter().getY()) < c.getRadius()*c.getRadius())
-                    drawPixel(j,i,color);
+                    draw(j,i,color);
             }
         }
     }
@@ -71,7 +71,7 @@ public class Screen {
     public void drawTriangle(Triangle t, int color) {
         Line[] triangel = t.getEdges();
         for (Line l : triangel) {
-            drawLine(l,color);
+            draw(l,color);
         }
     }
 
@@ -150,7 +150,7 @@ public class Screen {
         while (index1 <= bound1 && index2 <= bound2) {
             System.out.println("u ("+pixelsLine1[index1]+","+pixelsLine1[index1+1]+") - ("+pixelsLine2[index2]+","+pixelsLine2[index2+1]+")");
             for (int x = pixelsLine1[index1] ; x <= pixelsLine2[index2] ; x++) {
-                drawPixel(x,pixelsLine1[index1+1],color);
+                draw(x,pixelsLine1[index1+1],color);
             }
             while(index1 < pixelsLine1.length-3 && pixelsLine1[index1+1] == pixelsLine1[index1+3]) {
                 index1+=2;
@@ -176,7 +176,7 @@ public class Screen {
 
                 System.out.println("l\\ ("+pixelsLine3[index3]+","+pixelsLine3[index3+1]+") - ("+pixelsLine2[index2]+","+pixelsLine2[index2+1]+")");
                 for (int x = pixelsLine3[index3]; x <= pixelsLine2[index2]; x++) {
-                    drawPixel(x, pixelsLine3[index3 + 1], color);
+                    draw(x, pixelsLine3[index3 + 1], color);
                 }
                 while (index3 <= pixelsLine3.length - 3 && pixelsLine3[index3 + 1] == pixelsLine3[index3 + 3]) {
                     index3 += 2;
@@ -203,7 +203,7 @@ public class Screen {
 
                 System.out.println("l/ ("+pixelsLine1[index1]+","+pixelsLine1[index1+1]+") - ("+pixelsLine3[index3]+","+pixelsLine3[index3+1]+")");
                 for (int x = pixelsLine1[index1]; x <= pixelsLine3[index3]; x++) {
-                    drawPixel(x, pixelsLine3[index3 + 1], color);
+                    draw(x, pixelsLine3[index3 + 1], color);
                 }
                 while (index1 < pixelsLine1.length - 3 && pixelsLine1[index1 + 1] == pixelsLine1[index1 + 3]) {
                     index1 += 2;
