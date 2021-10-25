@@ -16,8 +16,8 @@ public class Ball {
     private double radious;
     private double mass;
     private int color;
-    private double vx = 0;
-    private double vy = 0;
+    private double vx = 2;
+    private double vy = 2;
     private Circle circle;
 
     public Ball(double x, double y, double radious, double mass, int color) {
@@ -33,4 +33,10 @@ public class Ball {
         return circle;
     }
 
+    public void update() {
+        x += vx;
+        y += vy;
+        circle.getCenter().setX((int)x);
+        circle.getCenter().setY((int)y);
+    }
 }

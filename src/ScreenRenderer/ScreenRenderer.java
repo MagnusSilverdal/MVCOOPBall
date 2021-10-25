@@ -58,13 +58,9 @@ public class ScreenRenderer extends Canvas {
     }
 
     public void draw(ArrayList<Shape> shapes) {
+        screen.clear();
         for (Shape s : shapes) {
-            System.out.println(s.getClass().getName());
-            //screen.fill((s.getClass().getName()) s, 0xFFFFFF);
-            switch (s.getClass().getName()) {
-                case "Shapes.Circle" :
-                    screen.fill((Circle)s, 0xFFFFFF);
-            }
+            screen.fill((Circle)s, 0xFFFFFF);
         }
     }
 }

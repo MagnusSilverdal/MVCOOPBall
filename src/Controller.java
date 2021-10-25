@@ -76,7 +76,7 @@ public class Controller implements Runnable{
                 deltaUPS--;
             }
 
-            if (deltaFPS >= 1) {
+            while (deltaFPS >= 1) {
                 view.render();
                 frames++;
                 deltaFPS--;

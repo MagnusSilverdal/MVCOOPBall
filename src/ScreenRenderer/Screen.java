@@ -57,6 +57,14 @@ public class Screen {
         }
     }
 
+    public void draw(Sprite s) {
+        for (int y = 0 ; y < s.getHeight() ; y++) {
+            for (int x = 0 ; x < s.getWidth() ; x++) {
+
+            }
+        }
+    }
+
     public void fill(Circle c, int color) {
         Point p1 = new Point(c.getCenter().getX()-c.getRadius(), c.getCenter().getY()-c.getRadius());
         Point p2 = new Point(c.getCenter().getX()+c.getRadius(), c.getCenter().getY()+c.getRadius());
@@ -296,6 +304,12 @@ public class Screen {
             point[count] = y;
         }
         return point;
+    }
+
+    public void clear() {
+        for (int i = 0 ; i < pixels.length; i++) {
+            pixels[i] = 0x0;
+        }
     }
 }
 

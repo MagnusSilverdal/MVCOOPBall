@@ -19,7 +19,7 @@ public class SimulationModel {
         b = new Ball(20,20,10,10,10);
     }
     public void update() {
-
+        b.update();
     }
 
     public ArrayList<Shape> getShapes() {
