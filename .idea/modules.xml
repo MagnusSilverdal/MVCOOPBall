@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MVCOOPBall.iml" filepath="$PROJECT_DIR$/MVCOOPBall.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MVCOOPGameOfLife.iml" filepath="$PROJECT_DIR$/MVCOOPGameOfLife.iml" />
     </modules>
   </component>
 </project>

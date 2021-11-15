@@ -14,27 +14,39 @@ public class Controller implements Runnable{
     private Thread thread;
     private boolean running = false;
     private int fps = 25;
-    private int ups = 1;
-    private int width = 800;
-    private int height = 600;
-    private int scale = 4;
-    private JFrame frame;
+    private int ups = 4;
+    private int width = 400;
+    private int height = 400;
+    private int scale = 40;
+    private JFrame frameNative;
+    //private JFrame frameSprite;
     private String title = "";
-    private ScreenRenderer view;
+    private ScreenRenderer viewNative;
+    //private ScreenRenderer viewSprite;
     private SimulationModel model;
 
     public Controller() {
-        view = new ScreenRenderer(width,height,scale);
+        viewNative = new ScreenRenderer(width,height,scale);
+        //viewSprite = new ScreenRenderer(width,height,scale);
         model = new SimulationModel();
         // Frame data
-        frame = new JFrame(title);
-        frame.setResizable(false);
-        frame.add(view);
-        frame.pack();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        frame.requestFocus();
+        frameNative = new JFrame(title+"Native");
+        frameNative.add(viewNative);
+        frameNative.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameNative.setResizable(false);
+        frameNative.pack();
+        frameNative.setLocationRelativeTo(null);
+        frameNative.setVisible(true);
+        frameNative.requestFocus();
+
+        //frameSprite = new JFrame(title+"Sprite");
+        //frameSprite.add(viewSprite);
+        //frameSprite.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frameSprite.setResizable(false);
+        //frameSprite.pack();
+        //frameSprite.setLocationRelativeTo(null);
+        //frameSprite.setVisible(true);
+        //frameSprite.requestFocus();
     }
 
     public synchronized void start() {
@@ -71,20 +83,22 @@ public class Controller implements Runnable{
 
             while(deltaUPS >= 1) {
                 model.update();
-                view.draw(model.getShapes());
+                viewNative.draw(model.getShapes());
+                //viewSprite.drawSprites(model.getSprites());
                 updates++;
                 deltaUPS--;
             }
 
             while (deltaFPS >= 1) {
-                view.render();
+                viewNative.render();
+                //viewSprite.render();
                 frames++;
                 deltaFPS--;
             }
 
             if(System.currentTimeMillis() - timer >= 1000) {
                 timer += 1000;
-                frame.setTitle(this.title + "  |  " + updates + " ups, " + frames + " fps");
+                frameNative.setTitle(this.title + "Native  |  " + updates + " ups, " + frames + " fps");
                 frames = 0;
                 updates = 0;
             }

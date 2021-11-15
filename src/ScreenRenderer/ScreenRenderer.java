@@ -1,6 +1,8 @@
 package ScreenRenderer;
 import Shapes.Circle;
+import Shapes.Point;
 import Shapes.Shape;
+import Shapes.Sprite;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -60,7 +62,14 @@ public class ScreenRenderer extends Canvas {
     public void draw(ArrayList<Shape> shapes) {
         screen.clear();
         for (Shape s : shapes) {
-            screen.fill((Circle)s, 0xFFFFFF);
+            screen.draw((Point) s, 0xFFFFFF);
+        }
+    }
+
+    public void drawSprites(ArrayList<Sprite> sprites) {
+        screen.clear();
+        for (Sprite s : sprites) {
+            screen.draw(s);
         }
     }
 }
